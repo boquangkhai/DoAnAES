@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Generate Key AES Content</title>
+</head>
+
+<body>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="main.html">AES</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link active" href="main.html">Trang chủ</a></li>
+                <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownContent" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Nội dung
+                </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdownContent">
+                <li><a class="dropdown-item" href="GenerateKey_Content.html">Tạo khóa</a></li>
+                <li><a class="dropdown-item" href="AES_Content.html">Thuật toán AES</a></li>
+            </ul>
+                </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownSimulate" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Mô phỏng
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdownSimulate">
+                    <li><a class="dropdown-item" href="GenerateKey_Demo.html">Mở rộng khóa</a></li>
+                    <li><a class="dropdown-item" href="Encrypt_AES_Demo.html">Mã hóa</a></li>
+                    <li><a class="dropdown-item" href="Decrypt_AES_Demo.html">Giải mã</a></li>
+                </ul>
+            </li>
+            <li class="nav-item"><a class="nav-link" href="#">Liên hệ</a></li>
+            </ul>
+        </div>
+        </div>
+    </nav>
+    <div id="wb-content">
+        <div id="content-box">
+            <h1>Thuật toán mở rộng khóa AES</h1>
+            <p style="font-size: 18px;">
+            Để sử dụng trong mã hóa AES, một khóa khởi tạo duy nhất có
+            thể được mở rộng thành một loạt các khóa vòng bằng kỹ thuật
+            mở rộng khóa của AES (Tiêu chuẩn Mã hóa Tiên tiến). Các khóa 
+            vòng này cần thiết cho mỗi vòng của quá trình mã hóa và giải 
+            mã AES.
+            Phương pháp mở rộng khóa AES nhận vào một khóa gồm 4 word (16 
+            byte) và trả về một mảng tuyến tính gồm 44 word (176 byte). Mảng 
+            này đủ để cung cấp cho bước AddRoundKey ban đầu và một khóa vòng
+            gồm 4 word cho mỗi vòng trong tổng số 10 vòng của thuật toán 
+            mã hóa.
+            </p>
+            <h3>I. Nội dung thuật toán</h3>
+            <p>
+                <img src="images/Key_Expansion/Key_Expansion_Model.png" alt="Model">
+                <ul>
+                    <b>Cách mở rộng</b>
+                    <li>w[i] = w[i - 1] &#8853; w[i - 4], với 4 < i < 44 và i 
+                        không là bội của 4
+                    </li>
+                    <li>
+                        Nếu i là bội của 4: w[i] = g(w[i - 1]) &#8853; 
+                        w[i - 4]
+                        <ul>
+                            Trong đó g gồm các bước:
+                            <li>
+                                <b>RotWord(w[i - 1])</b>: Dịch vòng trái 1 byte 
+                                trên w[i - 1]
+                            </li>
+                            <li>
+                                <b>SubWord(RotWord(w[i - 1]))</b>: Thay thế một byte
+                                dùng S-box
+                            </li>
+                            <li>
+                                <b>SubWord(RotWord(w[i - 1])) &#8853; Rcon[j], 
+                                j = i / 4</b>:
+                                XOR với hằng số vòng Rcon[j]
+                            </li>
+                            <li>Rcon[j] = (RC[j], 00, 00, 00),
+                                với RC[1] = (01), RC[j] = (02). 
+                                RC[j - 1], phép nhân ở đây được xác định trên
+                                GF(2<sup>8</sup>)
+                            </li>
+                            <li>=> Giá trị của RC[j] ở dạng Hexa như sau: </li>
+                            <img src="images/Key_Expansion/RC[j].png" alt="RCj">
+                        </ul>
+                    </li>
+                </ul>
+                <ul>
+                    <li>
+                        Hộp thế S-Box
+                    </li>
+                    <img src="images/Key_Expansion/S-Box.png" alt="S-Box">
+                     <li>
+                        Hộp thế ngược InvS-Box
+                    </li>
+                    <img src="images/Key_Expansion/InvS-box.png" alt="InvS-Box">
+                </ul>
+            </p>
+        </div>
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</html>

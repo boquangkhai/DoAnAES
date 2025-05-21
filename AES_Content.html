@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Generate Key AES Content</title>
+</head>
+
+<body>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="main.html">AES</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link active" href="main.html">Trang chủ</a></li>
+                <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownContent" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Nội dung
+                </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdownContent">
+                <li><a class="dropdown-item" href="GenerateKey_Content.html">Tạo khóa</a></li>
+                <li><a class="dropdown-item" href="AES_Content.html">Thuật toán AES</a></li>
+            </ul>
+                </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownSimulate" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Mô phỏng
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdownSimulate">
+                    <li><a class="dropdown-item" href="GenerateKey_Demo.html">Mở rộng khóa</a></li>
+                    <li><a class="dropdown-item" href="Encrypt_AES_Demo.html">Mã hóa</a></li>
+                    <li><a class="dropdown-item" href="Decrypt_AES_Demo.html">Giải mã</a></li>
+                </ul>
+            </li>
+            <li class="nav-item"><a class="nav-link" href="#">Liên hệ</a></li>
+            </ul>
+        </div>
+        </div>
+    </nav>
+    <div id="wb-content">
+        <div id="content-box">
+            <ul>
+                <h4>Yêu cầu của AES</h4>
+                <li>
+                    Là mã khối đối xứng khoá riêng.
+                </li>
+                 <li>
+                    Kích thước khối dữ liệu 128 bit
+                    và độ dài khoá là tùy biến: 128,
+                    192 hoặc 256 bit.
+                </li>
+                <li>
+                    Chuẩn mã mới phải mạnh và 
+                    nhanh hơn Triple DES. Mã mới
+                    có cơ sở lí thuyết mạnh để thời
+                    gian sống của chuẩn khoảng
+                    20-30 năm (cộng thêm thời
+                    gian lưu trữ).
+                </li>
+                <li>
+                    Chuẩn mã mới phải mạnh và
+                    nhanh hơn Triple DES. Mã mới
+                    có cơ sở lí thuyết mạnh để thời
+                    gian sống của chuẩn khoảng
+                    20-30 năm (cộng thêm thời
+                    gian lưu trữ).
+                </li>
+            </ul>
+            <img src="images/AES_Al/Model1.png" alt="Model">
+            <ul>
+                <h5>
+                    <ul>
+                        <li>
+                        Có 10/12/14 vòng lặp tương ứng với kích thước khóa
+                        (128,192,256 bits).
+                        </li>
+                    </ul>
+                </h5>
+                <h4>Cấu trúc thuật toán AES</h4>
+                <li>
+                    <b>Key Expansion: </b>
+                    Mở rộng khóa
+                </li>
+                <li>
+                    <b>SubBytes: </b>
+                    Phép thế byte (dùng một S box
+                    cho từng byte)
+                </li>
+                <li>
+                    <b>ShiftRows: </b> 
+                    Dịch hàng (hoán vị byte giữa
+                    nhóm/cột)
+                </li>
+                <li>
+                    <b>MixColumns: </b> 
+                    Trộn cột (sử dụng nhân ma
+                    trận của các cột)
+                </li>
+                <li>
+                    <b>AddRoundKey: </b> 
+                    Cộng khoá vòng (XOR trạng
+                    thái dữ liệu với khoá vòng).
+                </li>
+            </ul>
+            <img src="images/AES_Al/Model2.png" alt="">
+            <ul>
+                <li>
+                   <h4>Key Expansion</h4>
+                   Xem thêm tại <a href="GenerateKey_Content.html">Đây</a>
+                </li>
+                <li>
+                    <h4>SubBytes</h4>
+                    <ul>
+                        <li>   
+                        Là quá trình thay thế (phi tuyến) trong
+                        đó mỗi byte sẽ được thay thế bằng một byte 
+                        khác theo bảng tra.
+                        </li>
+                        <li>
+                        Sử dụng một bảng 16 x 16 byte chứa hoán vị 
+                        của tất cả 256 giá trị 8 bit.
+                        </li>
+                        <li>
+                        Mỗi byte trạng thái được thay bởi byte trên 
+                        hàng xác định bởi 4 bit trái và cột xác định 
+                        bởi 4 bit phải.
+                        </li>
+                        <li>
+                        Ví dụ: Chẳng hạn {8d} được thay bởi hàng 8, cột d,
+                        mà giá trị sẽ là {5d}.
+                        </li>
+                    </ul>
+                 <img src="images/AES_Al/SubBytes.png" alt="Sub-Bytes"
+                 style="width: 600px;">
+                </li>
+                <li>
+                    <h4>ShiftRows</h4>
+                    <ul>
+                        <li>
+                            Đổi chỗ, các hàng trong khối được dịch vòng
+                        </li>
+                        <li>
+                            Hàng 1 không đổi
+                        </li>
+                        <li>
+                            Hàng 2 dịch vòng quanh 1 byte sang trái
+                        </li>
+                        <li>
+                            Hàng 3 dịch vòng quanh 2 byte sang trái
+                        </li>
+                        <li>
+                            Hàng 4 dịch vòng quanh 3 byte sang trái
+                        </li>
+                        <li>
+                            Việc Giải mã thực hiện dịch ngược lại sang phải
+                        </li>
+                    </ul>
+                    <img src="images/AES_Al/ShiftRows.png" alt="Shift-Rows"
+                    style = "width: 600px;">
+                </li>
+                <li>
+                    <h4>Mix Columns</h4>
+                    <ul>
+                        <li>
+                            Hàm này làm việc trên mỗi cột của trạng thái.
+                        </li>
+                        <li>
+                            Với mỗi trạng thái, hàm MixColumns (State) được
+                            thực hiện lặp lại 4 lần.
+                        </li>
+                        <li>
+                            Nó coi mỗi cột của mảng trạng thái như một đa thức
+                            gồm 4 hạng tử và được nhân theo modulo x<sup>4</sup> 
+                            + 1 với một đa thức cố định c(x):
+                            c(x) = {03}x<sup>3</sup> + {01}x<sup>2</sup> + 
+                            {01}x + {02}
+                        </li>
+                    
+                        <div style="width: 100%; max-width: 800px; margin: auto;">
+                            <img src="images/AES_Al/Model3.png" alt="" style="width: 100%; height: auto; display: block;">
+                            <img src="images/AES_Al/Model4.png" alt="" style="width: 100%; height: auto; display: block;">
+                        </div>
+                        <img src="images/AES_Al/MixColumns.png" alt="" style="width: 600px;"> 
+                    </ul>
+                </li>
+                <li>
+                    <h4>AddRoundKey</h4>
+                    <ul>
+                        <li>
+                            Mỗi khóa vòng gồm 4 word (32 bit) được sinh ra 
+                            bởi thủ tục mở rộng khóa 
+                            <a href="GenerateKey_Content.html">Key Expansion
+                            </a>
+                        </li>
+                        <li>
+                            Khóa của AES là 128/192/256 bit ứng với số vòng 
+                            10/12/14
+                        </li>
+                        <img src="images/AES_Al/AddRoundKeys.png" alt="" 
+                        style = "width: 600px;">
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</html>

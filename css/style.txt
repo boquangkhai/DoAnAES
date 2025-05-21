@@ -1,0 +1,176 @@
+body, html 
+{
+    background: url('https://images.pexels.com/photos/2653362/pexels-photo-2653362.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2') no-repeat center center fixed;
+    background-size: cover;
+    height: 100%;
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+}
+#content-box ul, #content-box li
+{
+    font-size: 18px;
+}
+.overlay 
+{
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.hero-content 
+{
+
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.navbar-dark .navbar-nav .nav-link 
+{
+    color: #fff;
+    font-weight: 500;
+}
+
+.btn-main 
+{
+    background-color: red;
+    color: white;
+    font-weight: bold;
+    padding: 10px 25px;
+    border-radius: 30px;
+    text-transform: uppercase;
+}
+
+/* Phần menu con, xổ dọc */
+.dropdown-menu 
+{
+    background-color: #343a40; /* Match navbar background */
+    border: none;
+}
+.dropdown-item 
+{
+    color: white;
+}
+.dropdown-item:hover 
+{
+    background-color: #495057;
+}
+/* Hiệu ứng */
+.navbar-dark .navbar-nav .nav-link:hover 
+{
+    color: #ffc107 !important;
+    transform: scale(1.05);
+    transition: all 0.2s ease-in-out;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    position: relative;
+    overflow: hidden;
+    transition: color 0.3s ease;
+}
+.navbar-dark .navbar-nav .nav-link::before
+{
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: -100%;
+  width: 100%;
+  height: 2px;
+  background-color: #ffc107;
+  transition: left 0.3s ease;
+}
+.navbar-dark .navbar-nav .nav-link:hover::before 
+{
+  left: 0;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover 
+{
+  color: #ffc107 !important;
+  transform: scale(1.05);
+}
+.nav-item.dropdown:hover .dropdown-menu {
+  display: block;
+  margin-top: 0; /* tránh giật */
+}
+
+/* Optional: Mượt mà hơn khi xổ menu */
+.dropdown-menu {
+  transition: all 0.3s ease;
+}
+
+#wb-content
+{
+    padding: 30px;
+    border-radius: 5px;
+}
+
+#content-box 
+{
+    max-width: 1000px;
+    margin: 40px auto; /* cách top 40px */
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+    padding: 40px;
+}
+/* Input  */
+.input-plaintext {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.input-plaintext label {
+    width: 150px;
+    font-weight: bold;
+}
+
+.input-plaintext input {
+    flex: 1;
+    padding: 6px 10px;
+    font-size: 16px;
+}
+.input-key {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.input-key label {
+    width: 150px;
+    font-weight: bold;
+}
+
+.input-key input {
+    flex: 1;
+    padding: 6px 10px;
+    font-size: 16px;
+} 
+button
+{
+    padding: 8px 12px;
+    margin-left: 10px;
+}
+#output
+{
+    font-size: 1.2em;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+.error {
+    color: red;
+    font-size: 14px;
+}
+/* Hightlight cho các round */
+.round-output {
+    color: #fff;
+    background-color: #007bff;
+    padding: 4px 8px;
+    margin: 8px 0;
+    display: inline-block;
+    border-radius: 4px;
+    font-weight: bold;
+}
+

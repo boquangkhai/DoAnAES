@@ -236,6 +236,10 @@ function encryptAES()
         state = addRoundKey(state, roundKeys[round]);
         log += `AddRoundKey: ${formatWord(state)}\n`;
     }
-    log += `<br><b>Ciphertext:</b> ${formatWord(state)}`;
+    const cipherHex = formatWord(state);
+    const cipherText = state.map(b => String.fromCharCode(b)).join('');
+ 
+    log += `<br><b>Ciphertext (Hex):</b> ${cipherHex}`;
+    log += `<br><b>Ciphertext (String):</b> ${cipherText}`;
     output.innerHTML = log.replace(/\n/g, '<br>');
 }

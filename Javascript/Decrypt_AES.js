@@ -42,6 +42,7 @@ function stringToHex(str)
     .map(char => char.charCodeAt(0).toString(16).padStart(2,'0'))
     .join('');
 }
+
 function splitWords(bytes)
  {
     const words = [];
@@ -55,16 +56,13 @@ function rotWord(word)
     return [word[1],word[2],word[3],word[0]];
 }
 function subWord(word)
-{
+{   
     return word.map(b => sBox[b]);
 }
 function addRoundKey(state, roundKey) {
     return state.map((byte, i) => byte ^ roundKey[i]);
 }
-//Cách làm này sẽ tách riêng phần logic ra
-//Vì nếu không có đối số truyền vào thì khóa sẽ phụ thuộc vào DOM, tức là 
-//Phải lấy trực tiếp từ ô nhập liệu, không dùng được ở nơi khác
-//Nhất là mã hóa và giải mã phải dùng lại key từ expandkey
+
 function expandKey(keyString) 
 {
     if (keyString.length > 16)
@@ -186,8 +184,11 @@ function decryptAES() {
 
     const roundKeys = expandKey(key);
     
-    const hex = ciphertext.replace(/\s+/g, ''); // loại bỏ tất cả khoảng trắng
-    //Duyệt từng phần tử hex và chuyển sang số nguyên
+    let hex = ciphertext.replace(/\s+/g, '');
+if (!/^[0-9a-fA-F]+$/.test(hex)) {
+    hex = stringToHex(ciphertext);
+}
+
     const state = hex.match(/.{1,2}/g).map(h => parseInt(h, 16));
     //Chuyển key sang hex
     const stateHexKey = stringToHex(key).match(/.{1,2}/g).map(h => parseInt(h, 16));
@@ -226,7 +227,6 @@ function decryptAES() {
         }
     }
 
-    // Chuyển về chuỗi ASCII/UTF-8
     const decoder = new TextDecoder();
     const plaintext = decoder.decode(new Uint8Array(currentState)).replace(/X+$/, '');
 
